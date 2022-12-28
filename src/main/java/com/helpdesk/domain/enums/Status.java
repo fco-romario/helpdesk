@@ -1,12 +1,8 @@
 package com.helpdesk.domain.enums;
 
 public enum Status {
-	
-<<<<<<< HEAD
+
 	ABERTO(0, "ABERTO"), ANDAMENTO(1, "ANDAMENTO"), ENCERRADO(2, "ENCERRADO");
-=======
-	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
->>>>>>> e0886cd5ecb38c6f851ac2cd5b8b60e374fa6906
 	
 	private Integer codigo;
 	private String descricao;
