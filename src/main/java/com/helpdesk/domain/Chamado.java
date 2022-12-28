@@ -4,26 +4,48 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.helpdesk.domain.enums.Prioridade;
+import com.helpdesk.domain.enums.Status;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Chamado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	private Integer prioridade;
-	private Integer status;
+	
+	
+	private Prioridade prioridade;
+	private Status status;
 	private String titulo;
 	private String observacao;
 
+	@ManyToOne
+	@JoinColumn(name = "tecnico_id")
 	private Tecnico tecnico;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
 	public Chamado() {
 		super();
 	}
 
-	public Chamado(Integer id, Integer prioridade, Integer status, String titulo, String observacao, Tecnico tecnico,
+	public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacao, Tecnico tecnico,
 			Cliente cliente) {
 		super();
 		this.id = id;
@@ -59,19 +81,19 @@ public class Chamado implements Serializable {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Integer getPrioridade() {
+	public Prioridade getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(Integer prioridade) {
+	public void setPrioridade(Prioridade prioridade) {
 		this.prioridade = prioridade;
 	}
 
-	public Integer getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
