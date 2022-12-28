@@ -1,6 +1,7 @@
 package com.helpdesk.domain.enums;
 
 public enum Prioridade {
+<<<<<<< HEAD
 	
 	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
 	
@@ -31,4 +32,7 @@ public enum Prioridade {
 		}
 		throw new IllegalArgumentException("Prioridade inválido!");
 	}
+=======
+
+>>>>>>> e0886cd5ecb38c6f851ac2cd5b8b60e374fa6906
 }
