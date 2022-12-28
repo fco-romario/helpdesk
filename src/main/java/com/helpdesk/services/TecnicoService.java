@@ -19,5 +19,6 @@ public class TecnicoService {
 		Optional<Tecnico> obj = tecnicoRepository.findById(id);
 		return obj.orElse(null);
 	}
-
+	
+	
 }
