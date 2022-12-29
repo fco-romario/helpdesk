@@ -14,6 +14,8 @@ import com.helpdesk.repositories.TecnicoRepository;
 import com.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.helpdesk.services.exceptions.ObjectNotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TecnicoService {
 
@@ -32,11 +34,11 @@ public class TecnicoService {
 		return tecnicoRepository.findAll();
 	}
 
-	public Tecnico create(TecnicoDTO objDTO) {
+	public Tecnico create(@Valid TecnicoDTO objDTO) {
 		objDTO.setId(null);
 		Tecnico newObj = new Tecnico(objDTO);
 		validaPorCpfEEmail(objDTO);
-		return tecnicoRepository.save(newObj);
+		return tecnicoRepository.save(newObj); 
 	}
 	
 	private void validaPorCpfEEmail(TecnicoDTO objDTO){
