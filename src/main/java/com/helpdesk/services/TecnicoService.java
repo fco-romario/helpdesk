@@ -30,7 +30,7 @@ public class TecnicoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado, Id: " + id));
 	}
 	
-	public List<Tecnico> findAll() {
+	public List<Tecnico> findAll() { 
 		return tecnicoRepository.findAll();
 	}
 
@@ -39,6 +39,14 @@ public class TecnicoService {
 		Tecnico newObj = new Tecnico(objDTO);
 		validaPorCpfEEmail(objDTO);
 		return tecnicoRepository.save(newObj); 
+	}
+	
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return tecnicoRepository.save(oldObj);
 	}
 	
 	private void validaPorCpfEEmail(TecnicoDTO objDTO){
@@ -53,4 +61,7 @@ public class TecnicoService {
 		}
 		
 	}
+
+	
+	
 }
